@@ -1,17 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+let currentDate = new Date();
+let currentHour = currentDate.getHours();
+// console.log("The Current Hour is: "+currentHour);
+let greetingMessage = "";
+let cssStyle = {
+  color: 'black',
+}
+if (currentHour >= 4 && currentHour <= 11) {
+  greetingMessage = "Good Morning";
+  cssStyle.color = 'pink';
+}
+else if (currentHour >= 12 && currentHour <= 16) {
+  greetingMessage = "Good After-Noon";
+  cssStyle.color = 'yellow';
+}
+else if (currentHour >= 17 && currentHour <= 20) {
+  greetingMessage = "Good Evening";
+  cssStyle.color = 'red';
+}
+else {
+  greetingMessage = "Good Night";
+}
+// console.log(greetingMessage);
+let s1=">>>",s2="<<<";
+ReactDOM.render(
+  <>
+  <div className="welcomeMessage">
+    <h1>{s2}====Welcome===={s1}</h1>
+  </div>
+    <div className='container'>
+      <h1 className='message'>
+        <span style={cssStyle}>
+          {greetingMessage}
+        </span>
+      </h1>
+    </div>
+  </>,
+  document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
